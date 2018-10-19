@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace DanielProyecto
 {
@@ -17,6 +18,7 @@ namespace DanielProyecto
         EditText txtUsuario, txtPassword;
         Button btnLogin;
         VideoView video;
+        ProgressBar progressBar;
 
         public void OnPrepared(MediaPlayer mp)
         {
@@ -30,21 +32,32 @@ namespace DanielProyecto
             base.OnCreate(savedInstanceState);
             
             SetContentView(Resource.Layout.activity_main);
-
+            
             CopyDocuments("baseInterna.sqlite", "LeonaliDB.db");
             txtUsuario = (EditText)FindViewById(Resource.Id.txtUsuario);
             txtPassword = (EditText)FindViewById(Resource.Id.txtContrasena);
             btnLogin = (Button)FindViewById(Resource.Id.btnLogin);
             var ln = (LinearLayout)FindViewById(Resource.Id.lnPreguntas);
 
-            btnLogin.Click += delegate {
-                com.somee.servicioweb1test.Service service = new com.somee.servicioweb1test.Service();
-                var xml = service.Consulta("select * from usuarios where user_name = '" + txtUsuario.Text + "' and user_password = '" + txtPassword.Text + "';");
+            btnLogin.Click += async delegate {
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ClaseDato));
-                var claseDato = new ClaseDato();
+                progressBar = new ProgressBar(this, null, Android.Resource.Attribute.ProgressBarStyleLarge);
+                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(200, 200);
+                p.AddRule(LayoutRules.CenterInParent);
+                progressBar.IndeterminateDrawable.SetColorFilter(Android.Graphics.Color.Rgb(255, 255, 255), Android.Graphics.PorterDuff.Mode.Multiply);
+
+                FindViewById<RelativeLayout>(Resource.Id.FondoLogin).AddView(progressBar, p);
+                await Task.Delay(10000);
+                progressBar.Visibility = Android.Views.ViewStates.Visible;
+                Window.AddFlags(Android.Views.WindowManagerFlags.NotTouchable);
+                
                 try
                 {
+                    com.somee.servicioweb1test.Service service = new com.somee.servicioweb1test.Service();
+                    var xml = service.Consulta("select * from usuarios where user_name = '" + txtUsuario.Text + "' and user_password = '" + txtPassword.Text + "';");
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(ClaseDato));
+                    var claseDato = new ClaseDato();
+
                     var jsonLimpio = "";
                     var bandera = false;
 
@@ -66,7 +79,9 @@ namespace DanielProyecto
                 }
                 catch (Exception ex)
                 {
-                    Toast.MakeText(this, "Usuario y/o contraseña son incorrectos", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Error al iniciar \r\n Verifica tu conexion a internet o tu Usuario y/o contraseña", ToastLength.Short).Show();
+                    progressBar.Visibility = Android.Views.ViewStates.Invisible;
+                    Window.ClearFlags(Android.Views.WindowManagerFlags.NotTouchable);
                 }
 
             };
