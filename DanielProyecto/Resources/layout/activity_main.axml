@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/videoPlay"
+        android:layout_gravity="center_horizontal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/lnPreguntas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#7F000000"
+            android:gravity="center">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/myStyleLabel"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Usuario"
+                    android:text="Daniel"
+                    android:textSize="20dp"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:id="@+id/txtUsuario"
+                    android:textColor="#fff" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/myStyleLabel"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    android:textSize="20dp"
+                    android:inputType="textPassword"
+                    android:text="abcd1234"
+                    android:singleLine="true"
+                    android:id="@+id/txtContrasena"
+                    android:textColor="#fff" />
+            </android.support.design.widget.TextInputLayout>
+            <Button
+                android:text="Login"
+                android:textColor="#fff"
+                android:fontFamily="@android:string/yes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textSize="23dp"
+                android:background="@color/azul"
+                android:layout_margin="25dp"
+                android:id="@+id/btnLogin" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

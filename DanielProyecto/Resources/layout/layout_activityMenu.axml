@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeSubido"
+        android:text="Higiene del usuario"
+        android:id="@+id/btnHigieneUsuario"
+        android:layout_margin="10dp"
+        android:textColor="#fff" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeSubido"
+        android:text="Higiene del area"
+        android:id="@+id/btnHigieneArea"
+        android:layout_margin="10dp"
+        android:textColor="#fff" />
+</LinearLayout>
