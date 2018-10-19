@@ -74,7 +74,7 @@ namespace DanielProyecto
                     var results = JsonConvert.DeserializeObject<List<ClaseDato>>(jsonLimpio);
 
                     new General().GuardarDatosUsuario(results[0].id_user, results[0].user_name, results[0].user_password);
-
+                    FinishAffinity();
                     StartActivity(typeof(ActivityMenu));
                 }
                 catch (Exception ex)
@@ -122,6 +122,30 @@ namespace DanielProyecto
             {
 
             }
+        }
+
+        protected override void OnRestart()
+        {
+            base.OnRestart();
+            video = (VideoView)FindViewById(Resource.Id.videoPlay);
+
+            video.SetOnPreparedListener(this);
+            string videoPaht = "android.resource://DanielProyecto.DanielProyecto/" + Resource.Raw.agri;
+            Android.Net.Uri uri = Android.Net.Uri.Parse(videoPaht);
+            video.SetVideoURI(uri);
+            video.Start();
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            video = (VideoView)FindViewById(Resource.Id.videoPlay);
+
+            video.SetOnPreparedListener(this);
+            string videoPaht = "android.resource://DanielProyecto.DanielProyecto/" + Resource.Raw.agri;
+            Android.Net.Uri uri = Android.Net.Uri.Parse(videoPaht);
+            video.SetVideoURI(uri);
+            video.Start();
         }
     }
 }
