@@ -178,6 +178,22 @@
     <AndroidResource Include="Resources\raw\agri.mp4" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\layoutFechas.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\layoutResumen.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\leonali.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\layout\ItemBoton.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
